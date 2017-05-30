@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="BordeTest" project="PAI_9" tests="5" started="5" failures="0" errors="0" ignored="0">
+  <testsuite name="bola_program.BordeTest" time="0.0">
+    <testcase name="notBordeXI" classname="bola_program.BordeTest" time="0.0"/>
+    <testcase name="bordeXI" classname="bola_program.BordeTest" time="0.0"/>
+    <testcase name="BordeXD" classname="bola_program.BordeTest" time="0.0"/>
+    <testcase name="BordeYD" classname="bola_program.BordeTest" time="0.0"/>
+    <testcase name="BordeYU" classname="bola_program.BordeTest" time="0.0"/>
+  </testsuite>
+</testrun>

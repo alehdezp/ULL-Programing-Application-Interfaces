@@ -1,0 +1,227 @@
+package calculadora;
+
+
+import java.awt.FlowLayout;
+import java.awt.Frame;
+import java.awt.GridLayout;
+import java.awt.event.WindowEvent;	//for CloseListener()
+import java.awt.event.WindowAdapter;	//for CloseListener()
+import java.lang.Integer;		//int from Model is passed as an Integer
+import java.util.Observable;		//for update();
+import java.util.Observer;
+
+import javax.swing.*;
+import javax.swing.border.TitledBorder;
+
+class View extends JFrame implements Observer {
+	
+	private float euros;
+	private JTextField euroDMText;
+	private JTextField euroBFText;
+	private JTextField euroFFText;
+	private JTextField euroILText;
+	private JTextField euroDOText;
+						
+	private static float dolarC = (float) 1.07;
+	private JTextField dolarText;
+	
+	private static float dmC = (float) 1.95;
+	private JTextField dmText;
+	private static float bfC = (float) 40.34;
+	private JTextField bfText;
+	private static float ffC = (float) 6.56;
+	private JTextField ffText;
+	private static float ilC = (float) 1936;
+	private JTextField ilText;
+	
+	/**
+	 * Constructor por defecto
+	 */
+	View() {
+		
+		
+		setLayout(new FlowLayout(FlowLayout.LEFT, 5, 10));	
+		
+		JPanel principalView = new JPanel(new GridLayout(0, 1, 5, 5));
+		JLabel msgEuro = new JLabel("1 Euro is "); 
+		euroDMText = new JTextField("1", 7);
+		euroBFText = new JTextField("1", 7);
+		euroFFText = new JTextField("1", 7);
+		euroILText = new JTextField("1", 7);
+		euroDOText = new JTextField("1", 7);
+		dolarText = new JTextField("" + dolarC, 7);
+		
+		dmText = new JTextField("" + dmC, 7);
+		bfText = new JTextField("" + bfC, 7);
+		ffText = new JTextField("" + ffC, 7);
+		ilText = new JTextField("" + ilC, 7);
+		
+		JPanel dolarPanel = new JPanel(new GridLayout(3, 1, 0, 0));
+		JPanel dolarF1 = new JPanel(new FlowLayout(0, 0, 0));	
+		dolarF1.add(new JLabel("1 Euro is "));
+		dolarF1.add(new JTextField(""+ dolarC));
+		dolarF1.add(new JLabel("  Dolar	"));
+		
+		
+		JPanel dolarF2 = new JPanel(new FlowLayout(0, 0, 0));
+		dolarF2.add(new JLabel(" Euro                    Dolar"));
+		
+		JPanel dolarF3 = new JPanel(new FlowLayout(0, 0, 0));
+		dolarF3.add(euroDOText);
+		dolarF3.add(dolarText);
+		
+		dolarPanel.add(dolarF1);
+		dolarPanel.add(dolarF2);
+		dolarPanel.add(dolarF3);
+		
+	    dolarPanel.setBorder(new TitledBorder("Dolar"));
+		
+	    
+	    JPanel dmPanel = new JPanel(new GridLayout(3, 1, 0, 0));
+		JPanel dmF1 = new JPanel(new FlowLayout(0, 0, 0));	
+		dmF1.add(new JLabel("1 Euro is "));
+		dmF1.add(new JTextField(""+ dmC));
+		dmF1.add(new JLabel("  dm	"));
+		
+		
+		JPanel dmF2 = new JPanel(new FlowLayout(0, 0, 0));
+		dmF2.add(new JLabel(" Euro                    Dm"));
+		
+		JPanel dmF3 = new JPanel(new FlowLayout(0, 0, 0));
+		dmF3.add(euroDMText);
+		dmF3.add(dmText);
+		
+		dmPanel.add(dmF1);
+		dmPanel.add(dmF2);
+		dmPanel.add(dmF3);
+		
+	    dmPanel.setBorder(new TitledBorder("Dm"));
+	    
+	    JPanel bfPanel = new JPanel(new GridLayout(3, 1, 0, 0));
+		JPanel bfF1 = new JPanel(new FlowLayout(0, 0, 0));	
+		bfF1.add(new JLabel("1 Euro is "));
+		bfF1.add(new JTextField(""+ bfC));
+		bfF1.add(new JLabel("  bf	"));
+		
+		
+		JPanel bfF2 = new JPanel(new FlowLayout(0, 0, 0));
+		bfF2.add(new JLabel(" Euro                    bf"));
+		
+		JPanel bfF3 = new JPanel(new FlowLayout(0, 0, 0));
+		bfF3.add(euroBFText);
+		bfF3.add(bfText);
+		
+		bfPanel.add(bfF1);
+		bfPanel.add(bfF2);
+		bfPanel.add(bfF3);
+		
+	    bfPanel.setBorder(new TitledBorder("Belga Frances"));
+	    
+	    JPanel ffPanel = new JPanel(new GridLayout(3, 1, 0, 0));
+		JPanel ffF1 = new JPanel(new FlowLayout(0, 0, 0));	
+		ffF1.add(new JLabel("1 Euro is "));
+		ffF1.add(new JTextField(""+ ffC));
+		ffF1.add(new JLabel("  ff	"));
+		
+		
+		JPanel ffF2 = new JPanel(new FlowLayout(0, 0, 0));
+		ffF2.add(new JLabel(" Euro                    ff"));
+		
+		JPanel ffF3 = new JPanel(new FlowLayout(0, 0, 0));
+		ffF3.add(euroFFText);
+		ffF3.add(ffText);
+		
+		ffPanel.add(ffF1);
+		ffPanel.add(ffF2);
+		ffPanel.add(ffF3);
+		
+	    ffPanel.setBorder(new TitledBorder("Belga Frances"));
+	    
+	    JPanel ilPanel = new JPanel(new GridLayout(3, 1, 0, 0));
+		JPanel ilF1 = new JPanel(new FlowLayout(0, 0, 0));	
+		ilF1.add(new JLabel("1 Euro is "));
+		ilF1.add(new JTextField(""+ ilC));
+		ilF1.add(new JLabel("  il	"));
+		
+		
+		JPanel ilF2 = new JPanel(new FlowLayout(0, 0, 0));
+		ilF2.add(new JLabel(" Euro                    il"));
+		
+		JPanel ilF3 = new JPanel(new FlowLayout(0, 0, 0));
+		ilF3.add(euroILText);
+		ilF3.add(ilText);
+		
+		ilPanel.add(ilF1);
+		ilPanel.add(ilF2);
+		bfPanel.add(bfF3);
+		
+	    bfPanel.setBorder(new TitledBorder("Belga Frances"));
+		
+	    principalView.add(dmPanel);
+	    principalView.add(bfPanel);
+	    principalView.add(ffPanel);
+	    principalView.add(ilPanel);
+		principalView.add(dolarPanel);
+
+		add("Center", principalView);
+		
+	
+		
+		setTitle("Calculadora.java");
+		addWindowListener(new CloseListener());	
+		setSize(200, 400);
+		setLocation(1200,400);
+		setVisible(true);
+
+	} //View()
+
+	public void update(Observable obs, Object obj) {
+		setEuros(((Float)obj).intValue());
+		System.out.println("updating");
+		euroDMText.setText("" + getEuros());
+		euroBFText.setText("" + getEuros());
+		euroFFText.setText("" + getEuros());
+		euroILText.setText("" + getEuros());
+		euroDOText.setText("" + getEuros());
+		
+		dolarText.setText("" + (getEuros() * dolarC));
+		
+		
+	} //update()
+	
+	public void updateCalculator(){
+
+		validate();
+		repaint();
+		setVisible(true);
+	}
+
+	/**
+	 * @return the euros
+	 */
+	public float getEuros() {
+		return euros;
+	}
+
+	/**
+	 * @param euros the euros to set
+	 */
+	public void setEuros(float euros) {
+		this.euros = euros;
+	}
+
+
+	public void addController(Controller controller){
+		
+	} //addController()
+		
+	public static class CloseListener extends WindowAdapter {
+
+		public void windowClosing(WindowEvent e) {
+			e.getWindow().setVisible(false);
+			System.exit(0);
+		} //windowClosing()
+	} //CloseListener
+
+} //View
+

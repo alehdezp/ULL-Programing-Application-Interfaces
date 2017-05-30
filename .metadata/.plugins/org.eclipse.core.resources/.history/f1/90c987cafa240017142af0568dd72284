@@ -1,0 +1,63 @@
+package pi;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+
+public class Controlador implements ActionListener{
+	
+	private VistaBotones botones; 			//Vista de nuestro recorrido
+	private VistaDibujo dibujo;				//Vista de nuestros botones
+	private Aguja aguja;
+	
+	Controlador(VistaBotones botones, VistaDibujo dibujo){
+		setBotones(botones);
+		setDibujo(dibujo);
+		setAguja(new Aguja());
+		getAguja().setUnidad(getDibujo().getUnidad());
+	}
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
+		
+	}
+	/**
+	 * @return the botones
+	 */
+	public VistaBotones getBotones() {
+		return botones;
+	}
+	/**
+	 * @param botones the botones to set
+	 */
+	public void setBotones(VistaBotones botones) {
+		this.botones = botones;
+	}
+	/**
+	 * @return the dibujo
+	 */
+	public VistaDibujo getDibujo() {
+		return dibujo;
+	}
+	/**
+	 * @param dibujo the dibujo to set
+	 */
+	public void setDibujo(VistaDibujo dibujo) {
+		this.dibujo = dibujo;
+	}
+	/**
+	 * @return the aguja
+	 */
+	public Aguja getAguja() {
+		return aguja;
+	}
+	/**
+	 * @param aguja the aguja to set
+	 */
+	public void setAguja(Aguja aguja) {
+		this.aguja = aguja;
+	}
+	
+	
+
+}

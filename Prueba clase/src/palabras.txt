@@ -1,0 +1,5 @@
+venga = 1
+bueno = 1
+	venga = 1
+hola = 1
+adios = 1

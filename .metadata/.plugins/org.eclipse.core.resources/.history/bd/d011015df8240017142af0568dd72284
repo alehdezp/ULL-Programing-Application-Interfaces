@@ -1,0 +1,10 @@
+package pi;
+
+public class Aguja {
+	int distancia;
+	int theta;
+	
+	Aguja() {
+		
+	}
+}

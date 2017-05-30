@@ -1,0 +1,172 @@
+/**
+ * Universidad de La Laguna
+ * 	ETSII 
+ * 	Curso 3� de Ingieneria Inform�tica
+ * 	Fecha: 4-03-2017
+ * 	Clase que contiene lo necesario para dibujar una figura y desplazarla
+ * @author: Alejandro Hern�ndez Padr�n
+ *
+ */
+
+package bola_program;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+public abstract class Figura {
+
+	//Atributos
+
+	private int factor;		//factor de movimiento
+	private int moveX;		//desplazamineto de la figura en x
+	private int moveY;		//desplazamineto de la figura en y
+
+
+	private int centerX;	//Centro de la ventana
+	private int centerY;	//Centro de la ventana
+	private Color color;	//Color de la figura
+
+
+	/**
+	 * Constructor con un factor de movimiento
+	 * @param factor
+	 */
+	public Figura(int factor) {
+		setFactor(factor);
+	}
+
+	/**
+	 * Metodo abstracto paint, dibuja la figura
+	 * @param g
+	 */
+	public abstract void paint(Graphics g);
+
+	public void moveNE(){
+		moveUp();
+		moveLeft();
+	}
+	
+	public void moveNO(){
+		moveUp();
+		moveRight();
+	}
+	
+	public void moveSE(){
+		moveDown();
+		moveLeft();
+	}
+	
+	public void moveSO(){
+		moveDown();
+		moveRight();
+	}
+	/**
+	 * Mueve la figura a arriba
+	 */
+	public void moveUp(){
+		setMoveY(getMoveY() - 1 * getFactor());
+	}
+	/**
+	 * Mueve la figura a la izquierda
+	 */	
+	public void moveLeft(){
+		setMoveX(getMoveX() - 1 * getFactor());
+	}
+
+	/**
+	 * Mueve la figura a la derecha
+	 */
+	public void moveRight(){
+		setMoveX(getMoveX() + 1 * getFactor());
+	}
+
+	/**
+	 * Mueve la figura a abajo
+	 */
+	public void moveDown(){
+		setMoveY(getMoveY() + 1 * getFactor());
+	}
+	/**
+	 * @param moveX the moveX to set
+	 */
+	public void setMoveX(int moveX) {
+		this.moveX = moveX;
+	}
+
+	/**
+	 * @param moveY the moveY to set
+	 */
+	public void setMoveY(int moveY) {
+		this.moveY = moveY;
+	}
+	/**
+	 * @return the moveX
+	 */
+	public int getMoveX() {
+		return moveX;
+	}
+
+
+	/**
+	 * @return the moveY
+	 */
+	public int getMoveY() {
+		return moveY;
+	}
+
+	/**
+	 * @return the centerX
+	 */
+	public int getCenterX() {
+		return centerX;
+	}
+
+	/**
+	 * @param centerX the centerX to set
+	 */
+	public void setCenterX(int centerX) {
+		this.centerX = centerX;
+	}
+
+	/**
+	 * @return the centerY
+	 */
+	public int getCenterY() {
+		return centerY;
+	}
+
+	/**
+	 * @param centerY the centerY to set
+	 */
+	public void setCenterY(int centerY) {
+		this.centerY = centerY;
+	}
+
+	/**
+	 * @return the color
+	 */
+	public Color getColor() {
+		return color;
+	}
+
+	/**
+	 * @param color the color to set
+	 */
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
+	/**
+	 * @return the factor
+	 */
+	public int getFactor() {
+		return factor;
+	}
+
+	/**
+	 * @param factor the factor to set
+	 */
+	public void setFactor(int factor) {
+		this.factor = factor;
+	}
+}

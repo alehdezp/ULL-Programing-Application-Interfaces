@@ -1,0 +1,209 @@
+package pi;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.util.Random;
+
+import javax.swing.JPanel;
+
+public class VistaDibujo extends JPanel{
+	private int unidad;
+	private Controlador control;
+	private int x1, y1;
+	private int x2, y2;
+	private int theta;
+	private int nAgujas;
+	
+	VistaDibujo(){
+		
+	}
+
+	
+	public void paintComponent(Graphics g){		
+		super.paintComponent(g);
+		setBackground(Color.white);
+		dibujaLineas(g);
+		
+		dibujaRandom(g);
+	}
+	
+	public void dibujaLineas(Graphics g){
+		setUnidad(getHeight()/3);
+
+		g.drawLine(0, getUnidad(), getWidth(), getUnidad());
+		g.drawLine(0, getUnidad()*2, getWidth(), getUnidad()*2);
+		
+	}
+	
+	public void dibujaRandom(Graphics g){
+		System.out.println("dibujalineas");
+		for (int i = 0; i < getnAgujas(); i++) {
+			Random rn = new Random();
+			int x = (rn.nextInt(getWidth()) 
+					+ getWidth()) % getWidth();
+			int y = (rn.nextInt(getHeight()) 
+					+ getHeight()) % getHeight();
+			int ang = (rn.nextInt(180) + 180) % 180;
+			setTheta(ang);
+			setX1(x );
+			setY1(y);
+			dibujaPunto(g);
+			
+			/**
+			 * setX1(x );
+				setY1(y);
+			 * 
+			 */
+			
+		}
+	}
+	
+	public void dibujaPunto(Graphics g){
+		System.out.println("");
+		Graphics2D g2 = (Graphics2D) g;		//Dibujamos un linea gruesa
+		g2.setStroke(new BasicStroke(4));
+		Random rn = new Random();
+		int cl1 = (rn.nextInt(255) + 255) % 255;
+		int cl2 = (rn.nextInt(255) + 255) % 255;
+		int cl3 = (rn.nextInt(255) + 255) % 255;
+		g2.setColor(new Color(cl1, cl2, cl3));  
+		g2.drawLine(x1, y1, x1, y1);
+
+		
+	}
+
+
+	/**
+	 * @return the x2
+	 */
+	public int getX2() {
+		return x2;
+	}
+
+
+	/**
+	 * @param x2 the x2 to set
+	 */
+	public void setX2(int x2) {
+		this.x2 = x2;
+	}
+
+
+	/**
+	 * @return the y2
+	 */
+	public int getY2() {
+		return y2;
+	}
+
+
+	/**
+	 * @param y2 the y2 to set
+	 */
+	public void setY2(int y2) {
+		this.y2 = y2;
+	}
+
+
+	/**
+	 * @return the theta
+	 */
+	public int getTheta() {
+		return theta;
+	}
+
+
+	/**
+	 * @param theta the theta to set
+	 */
+	public void setTheta(int theta) {
+		this.theta = theta;
+	}
+
+
+	/**
+	 * 
+	 * 
+	 * @return the nAgujas
+	 */
+	public int getnAgujas() {
+		return nAgujas;
+	}
+
+
+	/**
+	 * @param nAgujas the nAgujas to set
+	 */
+	public void setnAgujas(int nAgujas) {
+		this.nAgujas = nAgujas;
+	}
+
+
+	/**
+	 * @return the x1
+	 */
+	public int getX1() {
+		return x1;
+	}
+
+
+	/**
+	 * @param x1 the x1 to set
+	 */
+	public void setX1(int x1) {
+		this.x1 = x1;
+	}
+
+
+	/**
+	 * @return the y1
+	 */
+	public int getY1() {
+		return y1;
+	}
+
+
+	/**
+	 * @param y1 the y1 to set
+	 */
+	public void setY1(int y1) {
+		this.y1 = y1;
+	}
+
+
+	/**
+	 * @return the unidad
+	 */
+	public int getUnidad() {
+		return unidad;
+	}
+
+
+	/**
+	 * @param unidad the unidad to set
+	 */
+	public void setUnidad(int unidad) {
+		this.unidad = unidad;
+	}
+
+
+	/**
+	 * @return the control
+	 */
+	public Controlador getControl() {
+		return control;
+	}
+
+
+	/**
+	 * @param control the control to set
+	 */
+	public void setControl(Controlador control) {
+		this.control = control;
+	}
+	
+	
+	
+}

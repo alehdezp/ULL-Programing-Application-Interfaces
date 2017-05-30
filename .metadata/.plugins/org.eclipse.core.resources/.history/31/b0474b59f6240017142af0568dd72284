@@ -1,0 +1,9 @@
+package pi;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class VistaBotones {
+	
+
+}

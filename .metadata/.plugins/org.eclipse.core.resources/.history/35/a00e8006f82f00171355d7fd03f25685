@@ -1,0 +1,13 @@
+package parabolico;
+
+import java.awt.GridLayout;
+
+import javax.swing.JDialog;
+
+public class VistaInfo extends JDialog{
+	public VistaInfo(){
+		setLayout(new GridLayout());
+		setVisible(true);
+		
+	}
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;PAI_9/src/bola_program/Borde.java&apos; to &apos;BordeTest.java&apos;" description="Rename resource &apos;Borde.java&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/bola_program/Borde.java" name="BordeTest.java" stamp="1491391181169" updateReferences="true"/>
+</session>

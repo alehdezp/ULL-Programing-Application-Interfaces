@@ -1,0 +1,20 @@
+package bola_program;
+
+import static org.junit.Assert.*;
+
+import java.awt.Color;
+
+import org.junit.Test;
+
+public class BordeTest {
+	BolaFill bola = new BolaFill(Color.RED, 50);
+	
+	@Test
+	public void test() {
+		bola.setCenter(200, 200, 100);
+		bola.setMoveX(250);
+		assertEquals(true, bola.getBorder());
+		
+	}
+
+}

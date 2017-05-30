@@ -1,0 +1,28 @@
+package pi;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+public class VistaDibujo extends JPanel{
+	int unidad;
+	
+	VistaDibujo(){
+		
+	}
+
+	
+	public void paintComponent(Graphics g){		
+		super.paintComponent(g);
+		setBackground(Color.white);
+		dibujaLineas(g);
+	}
+	
+	public void dibujaLineas(Graphics g){
+		unidad = getHeight()/3;
+		g.drawLine(0, unidad, getWidth(), unidad);
+		g.drawLine(0, unidad*2, getWidth(), unidad*2);
+		
+	}
+}

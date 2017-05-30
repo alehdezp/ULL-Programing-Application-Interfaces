@@ -1,0 +1,330 @@
+/**
+ * Universidad de La Laguna
+ * 	ETSII 
+ * 	Curso 3� de Ingieneria Inform�tica
+ * 	Fecha: 4-03-2017
+ * 	Clase que crea una venta en la que dibujamos el panel con la bola
+ * y a�adimos los botones
+ * @author: Alejandro Hern�ndez Padr�n
+ *
+ */
+
+package bola_program;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
+
+public class BolaMovil extends JFrame{
+	//Atributos
+
+	private JButton buttonUp = new JButton("Up");		//Bola roja buttons
+	private JButton buttonLeft= new JButton("Left");
+	private JButton buttonRight = new JButton("Right");
+	private JButton buttonDown = new JButton("Down");
+	
+
+	private JButton buttonUpBlue = new JButton("Up");		//Bola roja buttons
+	private JButton buttonLeftBlue = new JButton("Left");
+	private JButton buttonRightBlue = new JButton("Right");
+	private JButton buttonDownBlue = new JButton("Down");
+
+	private PanelDibujable panelBola;			//Panel que dibuja la bola
+
+	public BolaMovil(String[] factor) {
+
+		if (factor.length == 1){//Mientras se le pase un parametro
+			
+			//Construimos el panel con nuestro factor de desplazamiento
+			setPanelBola(new PanelDibujable(Integer.parseInt(factor[0])));
+
+			setLayout(new BorderLayout(0, 0));		//BorderLayout
+			add(getPanelBola(), BorderLayout.CENTER);	//A�adimos nuestro frame con la bola
+			
+			JPanel grid = new JPanel(new GridLayout(1, 2, 5, 5));
+			
+
+			grid.add(setButtonPanelRed());//A�adimos las acciones a nuestros botones//Creamos el panel con los botones
+			grid.add(setButtonPanelBlue());
+			setActionsButtonsRed();
+			setActionsButtonsBlue();
+			add(grid, BorderLayout.SOUTH);	//Lo a�adimos a nuestro Frame
+			
+			
+		}else{
+			System.out.println("Para ejecutar correctamente este programa es necesario"
+					+ " pasarle por linea de comandos un parametro de tipo int");
+		}
+
+		setTitle("BolaRoja");
+		setLocationRelativeTo(null); // Center the frame
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(800, 400);
+		setVisible(true);
+
+	}
+
+	/**
+	 * Metodo que crea y devuelve el Panel con nuestros botones
+	 * @return 
+	 */
+	private JPanel setButtonPanelRed(){
+
+		JPanel panelButtons = new JPanel(new GridLayout(4, 1, 5, 5)); //Panel que contiene los botones
+
+		JPanel panelUp = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+		panelUp.add(getButtonUp());
+
+		JPanel panelLR = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+		panelLR.add(getButtonLeft());
+		panelLR.add(getButtonRight());
+
+		JPanel panelDown = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+		panelDown.add(getButtonDown());
+
+		
+		//A�adimos lso botones al panel
+		panelButtons.add(panelUp);
+		panelButtons.add(panelLR);
+		panelButtons.add(panelDown);
+
+		return panelButtons;
+	}
+	private JPanel setButtonPanelBlue(){
+
+		JPanel panelButtons = new JPanel(new GridLayout(4, 1, 5, 5)); //Panel que contiene los botones
+
+		JPanel panelUp = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+		panelUp.add(getButtonUpBlue());
+
+		JPanel panelLR = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+		panelLR.add(getButtonLeftBlue());
+		panelLR.add(getButtonRightBlue());
+
+		JPanel panelDown = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+		panelDown.add(getButtonDownBlue());
+
+		
+		//A�adimos lso botones al panel
+		panelButtons.add(panelUp);
+		panelButtons.add(panelLR);
+		panelButtons.add(panelDown);
+
+		return panelButtons;
+	}
+
+	/**
+	 * Metodo que a�ade las acciones a nuestros botones
+	 */
+	private void setActionsButtonsRed(){
+
+		ButtonsListenerRed buttonListener = new ButtonsListenerRed();
+		getButtonUp().addActionListener(buttonListener);
+		getButtonLeft().addActionListener(buttonListener);
+		getButtonRight().addActionListener(buttonListener);
+		getButtonDown().addActionListener(buttonListener);
+	}
+	/**
+	 * Metodo que a�ade las acciones a nuestros botones
+	 */
+	private void setActionsButtonsBlue(){
+
+		ButtonsListenerBlue buttonListener = new ButtonsListenerBlue();
+		getButtonUp().addActionListener(buttonListener);
+		getButtonLeft().addActionListener(buttonListener);
+		getButtonRight().addActionListener(buttonListener);
+		getButtonDown().addActionListener(buttonListener);
+	}
+
+
+	/**
+	 * Clase que implementa ActionListener con las acciones a ejecutar de cada uno
+	 * de los botonoes
+	 * @author koala
+	 *
+	 */
+	class ButtonsListenerRed implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("hola");
+			if (e.getSource() == getButtonUp()){   	
+				getPanelBola().getBolaRoja().moveUp();;
+				getPanelBola().repaint();
+			}else if(e.getSource() == getButtonLeft()){
+				getPanelBola().getBolaRoja().moveLeft();
+				getPanelBola().repaint();
+			}else if(e.getSource() == getButtonRight()){
+				getPanelBola().getBolaRoja().moveRight();
+				getPanelBola().repaint();
+			}else if(e.getSource() == getButtonDown()){
+				getPanelBola().getBolaRoja().moveDown();
+				getPanelBola().repaint();
+			}
+
+
+		}
+	}
+	
+	class ButtonsListenerBlue implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("blue");
+			if (e.getSource() == getButtonUpBlue()){   	
+				getPanelBola().getBolaAzul().moveUp();;
+				getPanelBola().repaint();
+			}else if(e.getSource() == getButtonLeftBlue()){
+				getPanelBola().getBolaAzul().moveLeft();
+				getPanelBola().repaint();
+			}else if(e.getSource() == getButtonRightBlue()){
+				getPanelBola().getBolaAzul().moveRight();
+				getPanelBola().repaint();
+			}else if(e.getSource() == getButtonDownBlue()){
+				getPanelBola().getBolaAzul().moveDown();
+				getPanelBola().repaint();
+			}
+
+
+
+
+		}
+	}
+
+	
+		/**
+	 * @return the buttonUpBlue
+	 */
+	public JButton getButtonUpBlue() {
+		return buttonUpBlue;
+	}
+
+	/**
+	 * @param buttonUpBlue the buttonUpBlue to set
+	 */
+	public void setButtonUpBlue(JButton buttonUpBlue) {
+		this.buttonUpBlue = buttonUpBlue;
+	}
+
+	/**
+	 * @return the buttonLeftBlue
+	 */
+	public JButton getButtonLeftBlue() {
+		return buttonLeftBlue;
+	}
+
+	/**
+	 * @param buttonLeftBlue the buttonLeftBlue to set
+	 */
+	public void setButtonLeftBlue(JButton buttonLeftBlue) {
+		this.buttonLeftBlue = buttonLeftBlue;
+	}
+
+	/**
+	 * @return the buttonRightBlue
+	 */
+	public JButton getButtonRightBlue() {
+		return buttonRightBlue;
+	}
+
+	/**
+	 * @param buttonRightBlue the buttonRightBlue to set
+	 */
+	public void setButtonRightBlue(JButton buttonRightBlue) {
+		this.buttonRightBlue = buttonRightBlue;
+	}
+
+	/**
+	 * @return the buttonDownBlue
+	 */
+	public JButton getButtonDownBlue() {
+		return buttonDownBlue;
+	}
+
+	/**
+	 * @param buttonDownBlue the buttonDownBlue to set
+	 */
+	public void setButtonDownBlue(JButton buttonDownBlue) {
+		this.buttonDownBlue = buttonDownBlue;
+	}
+
+		/**
+		 * @return the buttonUp
+		 */
+		public JButton getButtonUp() {
+			return buttonUp;
+		}
+
+		/**
+		 * @param buttonUp the buttonUp to set
+		 */
+		public void setButtonUp(JButton buttonUp) {
+			this.buttonUp = buttonUp;
+		}
+
+		/**
+		 * @return the buttonLeft
+		 */
+		public JButton getButtonLeft() {
+			return buttonLeft;
+		}
+
+		/**
+		 * @param buttonLeft the buttonLeft to set
+		 */
+		public void setButtonLeft(JButton buttonLeft) {
+			this.buttonLeft = buttonLeft;
+		}
+
+		/**
+		 * @return the buttonRight
+		 */
+		public JButton getButtonRight() {
+			return buttonRight;
+		}
+
+		/**
+		 * @param buttonRight the buttonRight to set
+		 */
+		public void setButtonRight(JButton buttonRight) {
+			this.buttonRight = buttonRight;
+		}
+
+		/**
+		 * @return the buttonDown
+		 */
+		public JButton getButtonDown() {
+			return buttonDown;
+		}
+
+		/**
+		 * @param buttonDown the buttonDown to set
+		 */
+		public void setButtonDown(JButton buttonDown) {
+			this.buttonDown = buttonDown;
+		}
+
+		/**
+		 * @return the panelBola
+		 */
+		public PanelDibujable getPanelBola() {
+			return panelBola;
+		}
+
+		/**
+		 * @param panelBola the panelBola to set
+		 */
+		public void setPanelBola(PanelDibujable panelBola) {
+			this.panelBola = panelBola;
+		}
+
+
+	}
+

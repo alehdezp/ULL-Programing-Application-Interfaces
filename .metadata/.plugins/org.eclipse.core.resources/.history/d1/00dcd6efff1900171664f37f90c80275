@@ -1,0 +1,18 @@
+/**
+ * Universidad de La Laguna
+ * 	ETSII 
+ * 	Curso 3º de Ingieneria Informática
+ * 	Fecha: 4-03-2017
+ * 	Main que ejecuta nuestro programa
+ * @author: Alejandro Hernández Padrón
+ *
+ */
+
+
+package bola_program;
+
+public class Main {
+	public static void main(String[] args) {
+		BolaMovil frame = new BolaMovil(args);
+	}
+}

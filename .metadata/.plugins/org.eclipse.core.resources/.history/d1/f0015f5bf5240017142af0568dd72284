@@ -1,0 +1,68 @@
+package pi;
+
+import java.awt.FlowLayout;
+
+import javax.swing.JFrame;
+
+public class ProgramaAguja extends JFrame{
+	private VistaDibujo dibujo;
+	private VistaBotones botones;
+	private Controlador control;
+	
+	public static void main(String[] args) {
+		ProgramaAguja pr = new ProgramaAguja();
+	}
+	
+	public ProgramaAguja() {
+		setDibujo(new VistaDibujo());
+		setBotones(new VistaBotones());
+		setControl(new Controlador());
+		
+		setLayout(new FlowLayout());
+		add(getDibujo());
+	}
+
+	/**
+	 * @return the dibujo
+	 */
+	public VistaDibujo getDibujo() {
+		return dibujo;
+	}
+
+	/**
+	 * @param dibujo the dibujo to set
+	 */
+	public void setDibujo(VistaDibujo dibujo) {
+		this.dibujo = dibujo;
+	}
+
+	/**
+	 * @return the botones
+	 */
+	public VistaBotones getBotones() {
+		return botones;
+	}
+
+	/**
+	 * @param botones the botones to set
+	 */
+	public void setBotones(VistaBotones botones) {
+		this.botones = botones;
+	}
+
+	/**
+	 * @return the control
+	 */
+	public Controlador getControl() {
+		return control;
+	}
+
+	/**
+	 * @param control the control to set
+	 */
+	public void setControl(Controlador control) {
+		this.control = control;
+	}
+
+	
+}

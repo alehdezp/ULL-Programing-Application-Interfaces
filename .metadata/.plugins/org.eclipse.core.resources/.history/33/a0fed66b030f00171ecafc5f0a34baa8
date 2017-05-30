@@ -1,0 +1,8 @@
+package prueba7;
+
+public class Main {
+	public static void main(String[] args) {
+		Formas fm = new Formas("entrada.txt");
+		System.out.println("hola");
+	}
+}

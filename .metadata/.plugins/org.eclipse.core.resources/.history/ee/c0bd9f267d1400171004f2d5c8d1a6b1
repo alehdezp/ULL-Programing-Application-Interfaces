@@ -1,0 +1,9 @@
+package graficos;
+
+public class Cabeza extends Cara{
+
+	
+	public Cabeza(int x, int y){
+		
+	}
+}

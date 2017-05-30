@@ -1,0 +1,191 @@
+/**
+s * Universidad de La Laguna
+ * 	ETSII 
+ * 	Curso 3� de Ingieneria Inform�tica
+ * 	Fecha: 4-05-2017
+ * 	Vista del Panel de informacion de nuestro tiro
+ * @author: Alejandro Hernandez Padron
+ *
+ */
+package parabolico;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.Timer;
+
+
+public class ControlTiro implements ActionListener{
+	private ModeloTiroParabolico tiro;
+	private DibujaTiro dibujo;
+	private VistaBotones botones;
+	private VistaPanel panelInfo;
+	private Timer tm;
+
+	/**
+	 * Seteamos todos los atributos a partir de nuestro 
+	 * Constructor y nuestro que movera el proyectil
+	 * @param tiro
+	 * @param dibujo
+	 * @param botones
+	 * @param panelInfo
+	 */
+	public ControlTiro(ModeloTiroParabolico tiro, DibujaTiro dibujo, VistaBotones botones, VistaPanel panelInfo){
+		setTiro(tiro);
+		setDibujo(dibujo);
+		setBotones(botones);
+		setPanelInfo(panelInfo);
+		getDibujo().setPanelInfo(panelInfo);
+		tm = new Timer(10, new Next());
+
+	}
+
+	/**
+	 * Metodo actualiza  nuestro panel el proyectil y su 
+	 * trayectoria hasta que llega a alguno de los bordes
+	 * si llega a uno de los bordes resetea el modelo y 
+	 * a�ade una nueva trayectoria al dibujo
+	 */
+	public void paint(){
+		if(getTiro().getX() > getDibujo().getWidth() - 50 
+				|| getTiro().getY() > getDibujo().getHeight() - 50
+				|| getTiro().getY() < 0){
+			tm.stop();
+			getTiro().reset();
+			getDibujo().getXs().add(new ArrayList<Integer>());
+			getDibujo().getYs().add(new ArrayList<Integer>());
+			getDibujo().addColor();
+		}else{
+			actualizaPanel();
+			getDibujo().getXs().set(getDibujo().getXs().size()- 1, getTiro().getXs());
+			getDibujo().getYs().set(getDibujo().getYs().size()- 1, getTiro().getYs());
+			getDibujo().setxA(getTiro().getX());
+			getDibujo().setyA(getTiro().getY());
+			getDibujo().repaint();
+		}
+	}
+	
+	/**
+	 * Actualiza la informacion del Panel de informacion
+	 * de Tiro
+	 */
+	public void actualizaPanel(){
+		getPanelInfo().setTiempo(getTiro().getTiempo());
+		getPanelInfo().setX(getTiro().getX());
+		getPanelInfo().setY(getTiro().getY());
+		getPanelInfo().setVx(getTiro().getVx0());
+		getPanelInfo().setVy(getTiro().getVy0());
+		getPanelInfo().setV(getTiro().getVelocidadInicial());
+		
+		
+	}
+
+	
+	/**
+	 * Para cada accion de nuestro botones ejecutamos la 
+	 * orde correspondiente tenemos 6 botones o acciones
+	 * distintas
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		if ( e.getActionCommand().equals("Lanzar")) { 
+			if(!tm.isRunning())	
+				tm.start();
+		}else if ( e.getActionCommand().equals("Parar")) { //Inicia nuestro timer el cual va ejecutando pasos
+			tm.stop();
+		}else if ( e.getActionCommand().equals("Borrar")) { //Para el timer
+			getTiro().reset();
+			getDibujo().setXs(new ArrayList<ArrayList<Integer>>());
+			getDibujo().setYs(new ArrayList<ArrayList<Integer>>());
+			getDibujo().getXs().add(new ArrayList<>());
+			getDibujo().getYs().add(new ArrayList<>());
+			paint();
+		}else if ( e.getActionCommand().equals("Angulo")) { //Para el timer y ejecuta solo la siguiente accion del modelo
+			getDibujo().setAngulo(Integer.parseInt(getBotones().getAngulo().getText()));
+			getTiro().setAngulo(Integer.parseInt(getBotones().getAngulo().getText()));
+			getTiro().reset();
+			paint();
+		}else if  ( e.getActionCommand().equals("Velocidad")) {
+			getTiro().setVelocidadInicial(Double.parseDouble(getBotones().getVelocidad().getText()));
+			getTiro().reset();
+			paint();
+		}else if  ( e.getActionCommand().equals("Rastro")) {
+			getDibujo().setRastro(getBotones().getRastro().isSelected());
+		}
+	}
+
+	/**
+	 * Clase que ejecuta el timer y va incrementando el tiempo
+	 * de nuestro modelo y redibujandolo
+	 */
+	class Next implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			if(getTiro().getAngulo() <= 90){
+			getTiro().next();
+			paint();
+			}else{
+				tm.stop();
+			}
+		}
+	}
+	/**
+	 * @return the tiro
+	 */
+	public ModeloTiroParabolico getTiro() {
+		return tiro;
+	}
+
+	/**
+	 * @param tiro the tiro to set
+	 */
+	public void setTiro(ModeloTiroParabolico tiro) {
+		this.tiro = tiro;
+	}
+
+	/**
+	 * @return the dibujo
+	 */
+	public DibujaTiro getDibujo() {
+		return dibujo;
+	}
+
+	/**
+	 * @param dibujo the dibujo to set
+	 */
+	public void setDibujo(DibujaTiro dibujo) {
+		this.dibujo = dibujo;
+	}
+
+	/**
+	 * @return the botones
+	 */
+	public VistaBotones getBotones() {
+		return botones;
+	}
+
+	/**
+	 * @param botones the botones to set
+	 */
+	public void setBotones(VistaBotones botones) {
+		this.botones = botones;
+	}
+
+	/**
+	 * @return the panelInfo
+	 */
+	public VistaPanel getPanelInfo() {
+		return panelInfo;
+	}
+
+	/**
+	 * @param panelInfo the panelInfo to set
+	 */
+	public void setPanelInfo(VistaPanel panelInfo) {
+		this.panelInfo = panelInfo;
+	}
+
+
+
+}

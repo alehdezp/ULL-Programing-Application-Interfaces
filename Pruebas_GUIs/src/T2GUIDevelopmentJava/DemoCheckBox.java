@@ -1,0 +1,68 @@
+package T2GUIDevelopmentJava;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class DemoCheckBox extends DemoBoton {
+  // Create three check boxes to control the display of message
+  private JCheckBox jchkCentered = new JCheckBox("Centrado");
+  private JCheckBox jchkBold = new JCheckBox("Negrita");
+  private JCheckBox jchkItalic = new JCheckBox("Itálica");
+
+  public static void main(String[] args) {
+    DemoCheckBox frame = new DemoCheckBox();
+    frame.setTitle("Demo CheckBox");
+    frame.setLocationRelativeTo(null); // Center the frame
+    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    frame.setSize(500, 200);
+    frame.setVisible(true);
+  }
+
+  public DemoCheckBox() {
+    // Set mnemonic keys
+    jchkCentered.setMnemonic('C');
+    jchkBold.setMnemonic('B');
+    jchkItalic.setMnemonic('I');
+
+    // Create a new panel to hold check boxes
+    JPanel jpCheckBoxes = new JPanel();
+    jpCheckBoxes.setLayout(new GridLayout(3, 1));
+    jpCheckBoxes.add(jchkCentered);
+    jpCheckBoxes.add(jchkBold);
+    jpCheckBoxes.add(jchkItalic);
+    add(jpCheckBoxes, BorderLayout.EAST);
+
+    // Register listeners with the check boxes
+    jchkCentered.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+         panelTexto.setCentrado(jchkCentered.isSelected());
+      }
+    });
+    jchkBold.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        setNewFont();
+      }
+    });
+    jchkItalic.addActionListener(new ActionListener() {
+      public void actionPerformed(ActionEvent e) {
+        setNewFont();
+      }
+    });
+  }
+
+  private void setNewFont() {
+    // Determine a font style
+    int fontStyle = Font.PLAIN;
+    fontStyle += (jchkBold.isSelected() ? Font.BOLD : Font.PLAIN);
+    fontStyle += (jchkItalic.isSelected() ? Font.ITALIC : Font.PLAIN);
+
+    // Set font for the message
+    Font font = panelTexto.getFont();
+    panelTexto.setFont(new Font(font.getName(), fontStyle, font.getSize()));
+  }
+}
+
+/*
+ * vim:ts=2:set nu:sw=2
+ */

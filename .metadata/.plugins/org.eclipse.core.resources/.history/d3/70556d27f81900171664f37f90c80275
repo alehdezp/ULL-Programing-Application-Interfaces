@@ -1,0 +1,266 @@
+/**
+ * Universidad de La Laguna
+ * 	ETSII 
+ * 	Curso 3º de Ingieneria Informática
+ * 	Fecha: 4-03-2017
+ * 	Clase que crea una venta en la que dibujamos el panel con la bola
+ * y añadimos los botones
+ * @author: Alejandro Hernández Padrón
+ *
+ */
+
+package bola_program;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
+
+public class BolaMovil extends JFrame{
+	//Atributos
+	
+	private JButton buttonUp = new JButton("Up");
+	private JButton buttonLeft= new JButton("Left");
+	private JButton buttonRight = new JButton("Right");
+	private JButton buttonDown = new JButton("Down");
+	
+	private PanelDibujable panelBola;			//Panel que dibuja la bola
+
+	public BolaMovil(String[] factor) {
+		
+		if (factor.length == 1){//Mientras se le pase un parametro
+			//Construimos el panel con nuestro factor de desplazamiento
+			panelBola = new PanelDibujable(Integer.parseInt(factor[0]));
+
+			setLayout(new BorderLayout(0, 0));		//BorderLayout
+			add(panelBola, BorderLayout.CENTER);	//Añadimos nuestro frame con la bola
+
+			JPanel panelButtons = setButtonPanel();	//Creamos el panel con los botones
+			add(panelButtons, BorderLayout.SOUTH);	//Lo añadimos a nuestro Frame
+		}else{
+			System.out.println("Para ejecutar correctamente este programa es necesario"
+					+ " pasarle por linea de comandos un parametro de tipo int");
+		}
+
+		setTitle("BolaRoja");
+		setLocationRelativeTo(null); // Center the frame
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(800, 400);
+		setVisible(true);
+
+	}
+	
+	/**
+	 * Metodo que crea y devuelve el Panel con nuestros botones
+	 * @return 
+	 */
+	private JPanel setButtonPanel(){
+		
+		JPanel panelButtons = new JPanel(new GridLayout(3, 1, 5, 5)); //Panel que contiene los botones
+		
+		JPanel panelUp = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+		panelUp.add(buttonUp);
+
+		JPanel panelLR = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+		panelLR.add(buttonLeft);
+		panelLR.add(buttonRight);
+
+		JPanel panelDown = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+		panelDown.add(buttonDown);
+
+		setActionsButtons(); //Añadimos las acciones a nuestros botones
+		
+		//Añadimos lso botones al panel
+		panelButtons.add(panelUp);
+		panelButtons.add(panelLR);
+		panelButtons.add(panelDown);
+		return panelButtons;
+	}
+
+	/**
+	 * Metodo que añade las acciones a nuestros botones
+	 */
+	private void setActionsButtons(){
+		
+		ButtonsListener buttonListener = new ButtonsListener();
+		buttonUp.addActionListener(buttonListener);
+		buttonLeft.addActionListener(buttonListener);
+		buttonRight.addActionListener(buttonListener);
+		buttonDown.addActionListener(buttonListener);
+	}
+
+	/**
+	 * Clase que implementa ActionListener con las acciones a ejecutar de cada uno
+	 * de los botonoes
+	 * @author koala
+	 *
+	 */
+	class ButtonsListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+
+			if (e.getSource() == buttonUp){   	
+				panelBola.getBolaRoja().moveUp();;
+				panelBola.repaint();
+			}else if(e.getSource() == buttonLeft){
+				panelBola.getBolaRoja().moveLeft();
+				panelBola.repaint();
+			}else if(e.getSource() == buttonRight){
+				panelBola.getBolaRoja().moveRight();
+				panelBola.repaint();
+			}else if(e.getSource() == buttonDown){
+				panelBola.getBolaRoja().moveDown();
+				panelBola.repaint();
+			}
+
+
+		}
+	}
+
+	
+}
+
+/**
+ * Universidad de La Laguna
+ * 	ETSII 
+ * 	Curso 3º de Ingieneria Informática
+ * 	Fecha: 4-03-2017
+ * 	Clase que crea una venta en la que dibujamos el panel con la bola
+ * y añadimos los botones
+ * @author: Alejandro Hernández Padrón
+ *
+ */
+
+package bola_program;
+
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+
+
+public class BolaMovil extends JFrame{
+	//Atributos
+	
+	private JButton buttonUp = new JButton("Up");
+	private JButton buttonLeft= new JButton("Left");
+	private JButton buttonRight = new JButton("Right");
+	private JButton buttonDown = new JButton("Down");
+	private JButton buttonNE = new JButton("NE");
+	private JButton buttonNO= new JButton("NO");
+	private JButton buttonSE = new JButton("SE");
+	private JButton buttonSO = new JButton("SO");
+	
+	private PanelDibujable panelBola;			//Panel que dibuja la bola
+
+	public BolaMovil(String[] factor) {
+		
+		if (factor.length == 1){//Mientras se le pase un parametro
+			//Construimos el panel con nuestro factor de desplazamiento
+			panelBola = new PanelDibujable(Integer.parseInt(factor[0]));
+
+			setLayout(new BorderLayout(0, 0));		//BorderLayout
+			add(panelBola, BorderLayout.CENTER);	//Añadimos nuestro frame con la bola
+
+			JPanel panelButtons = setButtonPanel();	//Creamos el panel con los botones
+			add(panelButtons, BorderLayout.SOUTH);	//Lo añadimos a nuestro Frame
+		}else{
+			System.out.println("Para ejecutar correctamente este programa es necesario"
+					+ " pasarle por linea de comandos un parametro de tipo int");
+		}
+
+		setTitle("BolaRoja");
+		setLocationRelativeTo(null); // Center the frame
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(800, 400);
+		setVisible(true);
+
+	}
+	
+	/**
+	 * Metodo que crea y devuelve el Panel con nuestros botones
+	 * @return 
+	 */
+	private JPanel setButtonPanel(){
+		
+		JPanel panelButtons = new JPanel(new GridLayout(3, 1, 5, 5)); //Panel que contiene los botones
+		
+		JPanel panelUp = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+		panelUp.add(buttonNE);
+		panelUp.add(buttonUp);
+		panelUp.add(buttonNO);
+		
+		JPanel panelLR = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+		panelLR.add(buttonLeft);
+		panelLR.add(buttonRight);
+
+		JPanel panelDown = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 0));
+		panelUp.add(buttonSE);
+		panelDown.add(buttonDown);
+		panelUp.add(buttonSO);
+		
+		setActionsButtons(); //Añadimos las acciones a nuestros botones
+		
+		//Añadimos lso botones al panel
+		panelButtons.add(panelUp);
+		panelButtons.add(panelLR);
+		panelButtons.add(panelDown);
+		return panelButtons;
+	}
+
+	/**
+	 * Metodo que añade las acciones a nuestros botones
+	 */
+	private void setActionsButtons(){
+		
+		ButtonsListener buttonListener = new ButtonsListener();
+		buttonUp.addActionListener(buttonListener);
+		buttonLeft.addActionListener(buttonListener);
+		buttonRight.addActionListener(buttonListener);
+		buttonDown.addActionListener(buttonListener);
+	}
+
+	/**
+	 * Clase que implementa ActionListener con las acciones a ejecutar de cada uno
+	 * de los botonoes
+	 * @author koala
+	 *
+	 */
+	class ButtonsListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+
+			if (e.getSource() == buttonNE){   	
+				panelBola.getBolaRoja().moveUp();
+				
+				panelBola.repaint();
+			}else if(e.getSource() == buttonLeft){
+				panelBola.getBolaRoja().moveLeft();
+				panelBola.repaint();
+			}else if(e.getSource() == buttonRight){
+				panelBola.getBolaRoja().moveRight();
+				panelBola.repaint();
+			}else if(e.getSource() == buttonDown){
+				panelBola.getBolaRoja().moveDown();
+				panelBola.repaint();
+			}
+
+
+		}
+	}
+
+
+}

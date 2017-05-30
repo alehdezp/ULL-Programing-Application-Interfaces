@@ -1,0 +1,28 @@
+package parabolico;
+
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class VistaInfo extends JFrame{
+	public VistaInfo(){
+		setLayout(new GridLayout(0, 1));
+		JPanel flow1 =  new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JPanel flow2 =  new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JPanel flow3 =  new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		JPanel flow4 =  new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		flow1.add(new JLabel("Asignatura: Programacion de aplicaciones interactivas"));
+		flow1.add(new JLabel("Universidad de La Laguna Grado de Ingieria informática ULL"));
+		
+		add(flow1);
+		setLocation(100, 100); // Center the frame
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(500, 400);
+		setVisible(true);
+		setVisible(true);
+		
+	}
+}

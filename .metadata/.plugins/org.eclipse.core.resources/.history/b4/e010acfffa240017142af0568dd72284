@@ -1,0 +1,136 @@
+package pi;
+
+import java.awt.FlowLayout;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class VistaBotones extends JPanel{
+	
+	private Controlador control;
+	private JButton d1 = new JButton("Drop1");
+	private JButton d10 = new JButton("Drop10");
+	private JButton d100 = new JButton("Drop100");
+	private JButton d1000 = new JButton("Drop1000");
+	private JTextField nAgujas = new JTextField(7);
+	
+	VistaBotones(){
+		setLayout(new FlowLayout(10, 10, 0));
+		
+		addButtons();
+		setSignals();
+	}
+	
+	public void addButtons(){
+		add(getD1());
+		add(getD10());
+		add(getD100());
+		add(getD1000());
+		add(getnAgujas());
+	}
+	
+	public void setSignals(){
+		getD1().setActionCommand("d1");
+		getD1().addActionListener(getControl());
+		
+		getD10().setActionCommand("d10");
+		getD10().addActionListener(getControl());
+		
+		getD100().setActionCommand("d100");
+		getD100().addActionListener(getControl());
+		
+		getD1000().setActionCommand("d1000");
+		getD1000().addActionListener(getControl());
+		
+		getnAgujas().setActionCommand("nAgujas");
+		getnAgujas().addActionListener(getControl());
+	}
+	
+	
+	/**
+	 * @return the nAgujas
+	 */
+	public JTextField getnAgujas() {
+		return nAgujas;
+	}
+
+	/**
+	 * @param nAgujas the nAgujas to set
+	 */
+	public void setnAgujas(JTextField nAgujas) {
+		this.nAgujas = nAgujas;
+	}
+
+	/**
+	 * @return the control
+	 */
+	public Controlador getControl() {
+		return control;
+	}
+
+	/**
+	 * @param control the control to set
+	 */
+	public void setControl(Controlador control) {
+		this.control = control;
+	}
+
+	/**
+	 * @return the d1
+	 */
+	public JButton getD1() {
+		return d1;
+	}
+
+	/**
+	 * @param d1 the d1 to set
+	 */
+	public void setD1(JButton d1) {
+		this.d1 = d1;
+	}
+
+	/**
+	 * @return the d10
+	 */
+	public JButton getD10() {
+		return d10;
+	}
+
+	/**
+	 * @param d10 the d10 to set
+	 */
+	public void setD10(JButton d10) {
+		this.d10 = d10;
+	}
+
+	/**
+	 * @return the d100
+	 */
+	public JButton getD100() {
+		return d100;
+	}
+
+	/**
+	 * @param d100 the d100 to set
+	 */
+	public void setD100(JButton d100) {
+		this.d100 = d100;
+	}
+
+	/**
+	 * @return the d1000
+	 */
+	public JButton getD1000() {
+		return d1000;
+	}
+
+	/**
+	 * @param d1000 the d1000 to set
+	 */
+	public void setD1000(JButton d1000) {
+		this.d1000 = d1000;
+	}
+	
+	
+}

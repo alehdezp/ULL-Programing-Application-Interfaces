@@ -1,0 +1,88 @@
+package bola_program;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class PanelBotones extends JPanel{
+	private JButton buttonUp = new JButton("Up");
+	private JButton buttonLeft= new JButton("Left");
+	private JButton buttonRight = new JButton("Right");
+	private JButton buttonDown = new JButton("Down");
+	private PanelDibujable bola;
+	
+	public PanelBotones(BolaFill bola) {
+		setBola(bola);
+	}
+
+	/**
+	 * @return the buttonUp
+	 */
+	public JButton getButtonUp() {
+		return buttonUp;
+	}
+
+	/**
+	 * @param buttonUp the buttonUp to set
+	 */
+	public void setButtonUp(JButton buttonUp) {
+		this.buttonUp = buttonUp;
+	}
+
+	/**
+	 * @return the buttonLeft
+	 */
+	public JButton getButtonLeft() {
+		return buttonLeft;
+	}
+
+	/**
+	 * @param buttonLeft the buttonLeft to set
+	 */
+	public void setButtonLeft(JButton buttonLeft) {
+		this.buttonLeft = buttonLeft;
+	}
+
+	/**
+	 * @return the buttonRight
+	 */
+	public JButton getButtonRight() {
+		return buttonRight;
+	}
+
+	/**
+	 * @param buttonRight the buttonRight to set
+	 */
+	public void setButtonRight(JButton buttonRight) {
+		this.buttonRight = buttonRight;
+	}
+
+	/**
+	 * @return the buttonDown
+	 */
+	public JButton getButtonDown() {
+		return buttonDown;
+	}
+
+	/**
+	 * @param buttonDown the buttonDown to set
+	 */
+	public void setButtonDown(JButton buttonDown) {
+		this.buttonDown = buttonDown;
+	}
+
+	/**
+	 * @return the bola
+	 */
+	public BolaFill getBola() {
+		return bola;
+	}
+
+	/**
+	 * @param bola the bola to set
+	 */
+	public void setBola(BolaFill bola) {
+		this.bola = bola;
+	}
+	
+	
+}

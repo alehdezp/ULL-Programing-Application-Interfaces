@@ -1,0 +1,14 @@
+package bola_program;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class BordeTest {
+	
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

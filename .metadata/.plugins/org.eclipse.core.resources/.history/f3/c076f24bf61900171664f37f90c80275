@@ -1,0 +1,10 @@
+package bola_program;
+
+import javax.swing.JButton;
+
+public class PanelBotones extends JPanel{
+	private JButton buttonUp = new JButton("Up");
+	private JButton buttonLeft= new JButton("Left");
+	private JButton buttonRight = new JButton("Right");
+	private JButton buttonDown = new JButton("Down");
+}

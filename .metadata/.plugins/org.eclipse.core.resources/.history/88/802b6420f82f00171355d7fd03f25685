@@ -1,0 +1,13 @@
+package parabolico;
+
+import java.awt.GridLayout;
+
+import javax.swing.JFrame;
+
+public class VistaInfo extends JFrame{
+	public VistaInfo(){
+		setLayout(new GridLayout());
+		setVisible(true);
+		
+	}
+}

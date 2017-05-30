@@ -1,0 +1,260 @@
+/**
+s * Universidad de La Laguna
+ * 	ETSII 
+ * 	Curso 3� de Ingieneria Inform�tica
+ * 	Fecha: 4-05-2017
+ * 	Vista del Panel de informacion de nuestro tiro
+ * @author: Alejandro Hernandez Padron
+ *
+ */
+
+package parabolico;
+
+import java.util.ArrayList;
+
+public class ModeloTiroParabolico {
+
+	private int y; //posicion y
+	private double y0 = 0; //posicion y inicial
+	private double vy0; //velocidad y inicial;
+	private int x;// posicion x;
+	private double x0 = 0; //posicion x inicial;
+	private double vx0; //velocidad x inicial ;
+	private ArrayList<Integer> ys = new ArrayList<Integer>();	//Puntos calculados
+	private ArrayList<Integer> xs = new ArrayList<Integer>();
+	
+	private double velocidadInicial = 50;		
+	private int angulo = 45;
+	private double tiempo = 0;
+	private double g = -9.81;
+	double incrementoTiempo = 0.05;
+	
+	/**
+	 * Constructor por defecto
+	 */
+	public ModeloTiroParabolico(){
+		setVelocidadInicial(getVelocidadInicial());
+	}
+
+
+	/**
+	 * Metodo que va incrementando el tiempo de nuestra modelo
+	 * actualiza la x y la y e a�ade los puntos en una matriz
+	 * con todos los puntos calculados
+	 */
+	public void next(){
+
+		tiempo += incrementoTiempo;
+		x = (int) (vx0 *Math.cos(Math.toRadians(angulo))* tiempo);
+		y =  (int) (vy0 * Math.sin(Math.toRadians(angulo)) * tiempo + 0.5 * g * tiempo * tiempo);
+		System.out.println(y);
+		System.out.println(vy0);
+		ys.add((int)y);
+		xs.add((int)x);
+
+	}
+	
+	/**
+	 * Resetea el modelo a 0
+	 */
+	public void reset(){
+		tiempo = 0;
+		x = 0;
+		y = 0;
+		ys = new ArrayList<Integer>();
+		xs = new ArrayList<Integer>();
+	}
+
+
+
+	/**
+	 * @return the ys
+	 */
+	public ArrayList<Integer> getYs() {
+		return ys;
+	}
+
+	/**
+	 * @param ys the ys to set
+	 */
+	public void setYs(ArrayList<Integer> ys) {
+		this.ys = ys;
+	}
+
+	/**
+	 * @return the xs
+	 */
+	public ArrayList<Integer> getXs() {
+		return xs;
+	}
+
+	/**
+	 * @param xs the xs to set
+	 */
+	public void setXs(ArrayList<Integer> xs) {
+		this.xs = xs;
+	}
+
+	/**
+	 * @return the g
+	 */
+	public double getG() {
+		return g;
+	}
+
+	/**
+	 * @param g the g to set
+	 */
+	public void setG(double g) {
+		this.g = g;
+	}
+
+	/**
+	 * @return the incrementoTiempo
+	 */
+	public double getIncrementoTiempo() {
+		return incrementoTiempo;
+	}
+
+	/**
+	 * @param incrementoTiempo the incrementoTiempo to set
+	 */
+	public void setIncrementoTiempo(double incrementoTiempo) {
+		this.incrementoTiempo = incrementoTiempo;
+	}
+
+
+	/**
+	 * @return the y0
+	 */
+	public double getY0() {
+		return y0;
+	}
+
+	/**
+	 * @param y0 the y0 to set
+	 */
+	public void setY0(double y0) {
+		this.y0 = y0;
+	}
+
+	/**
+	 * @return the vy0
+	 */
+	public double getVy0() {
+		return vy0;
+	}
+
+	/**
+	 * @param vy0 the vy0 to set
+	 */
+	public void setVy0(double vy0) {
+		this.vy0 = vy0;
+	}
+
+
+	/**
+	 * @return the y
+	 */
+	public int getY() {
+		return y;
+	}
+
+	/**
+	 * @param y the y to set
+	 */
+	public void setY(int y) {
+		this.y = y;
+	}
+
+	/**
+	 * @return the x
+	 */
+	public int getX() {
+		return x;
+	}
+
+	/**
+	 * @param x the x to set
+	 */
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	/**
+	 * @return the x0
+	 */
+	public double getX0() {
+		return x0;
+	}
+
+	/**
+	 * @param x0 the x0 to set
+	 */
+	public void setX0(double x0) {
+		this.x0 = x0;
+	}
+
+	/**
+	 * @return the vx0
+	 */
+	public double getVx0() {
+		return vx0;
+	}
+
+	/**
+	 * @param vx0 the vx0 to set
+	 */
+	public void setVx0(double vx0) {
+		this.vx0 = vx0;
+	}
+
+	/**
+	 * @return the velocidadInicial
+	 */
+	public double getVelocidadInicial() {
+
+		return velocidadInicial;
+	}
+
+	/**
+	 * @param velocidadInicial the velocidadInicial to set
+	 */
+	public void setVelocidadInicial(double velocidadInicial) {
+		vy0 = velocidadInicial * Math.sin(Math.toRadians(angulo));
+		vx0 = velocidadInicial * Math.cos(Math.toRadians(angulo));
+		this.velocidadInicial = velocidadInicial;
+	}
+
+	/**
+	 * @return the angulo
+	 */
+	public int getAngulo() {
+		return angulo;
+	}
+
+	/**
+	 * @param angulo the angulo to set
+	 */
+	public void setAngulo(int angulo) {
+			this.angulo = angulo;
+	}
+
+	/**
+	 * @return the tiempo
+	 */
+	public double getTiempo() {
+		return tiempo;
+	}
+
+	/**
+	 * @param tiempo the tiempo to set
+	 */
+	public void setTiempo(double tiempo) {
+		this.tiempo = tiempo;
+	}
+
+
+
+
+}

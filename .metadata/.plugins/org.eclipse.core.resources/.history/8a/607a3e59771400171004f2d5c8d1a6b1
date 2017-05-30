@@ -1,0 +1,8 @@
+package graficos;
+
+public class Cara {
+	private int x;
+	private int y;
+	private int radius
+	Cara()
+}

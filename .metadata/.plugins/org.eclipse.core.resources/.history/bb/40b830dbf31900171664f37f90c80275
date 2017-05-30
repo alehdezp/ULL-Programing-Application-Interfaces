@@ -1,0 +1,55 @@
+package bola_program;
+
+import static org.junit.Assert.*;
+
+import java.awt.Color;
+
+import org.junit.Test;
+
+public class BordeTest {
+	BolaFill bola = new BolaFill(Color.RED, 50);
+	
+	@Test
+	public void bordeXI() {
+		bola.setCenter(200, 200, 100);
+		bola.setMoveX(250);
+		assertEquals(true, bola.getBorder());
+		bola.setMoveX(50);
+		assertEquals(true, bola.getBorder());
+	}
+	
+	@Test
+	public void notBordeXI() {
+		bola.setCenter(200, 200, 100);
+		bola.setMoveX(50);
+		assertEquals(false, bola.getBorder());
+		bola.setMoveX(100);
+		assertEquals(false, bola.getBorder());
+	}
+	
+	@Test
+	public void BordeXD() {
+		bola.setCenter(200, 200, 100);
+		bola.setMoveX(-250);
+		assertEquals(true, bola.getBorder());
+		
+	}
+
+	@Test
+	public void BordeYU() {
+		bola.setCenter(200, 200, 100);
+		bola.setMoveY(250);
+		assertEquals(true, bola.getBorder());
+		
+	}
+
+	@Test
+	public void BordeYD() {
+		bola.setCenter(200, 200, 100);
+		bola.setMoveY(-250);
+		assertEquals(true, bola.getBorder());
+	}
+
+	
+
+}

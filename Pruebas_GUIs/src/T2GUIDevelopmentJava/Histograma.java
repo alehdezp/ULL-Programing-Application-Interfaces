@@ -1,0 +1,66 @@
+package T2GUIDevelopmentJava;
+
+import javax.swing.*;
+import java.awt.*;
+
+public class Histograma extends JPanel {
+  // Count the occurrence of 26 letters
+  private int[] contador;
+
+  /** Set the count and display histogram */
+  public void muestraHistograma(int[] contador) {
+    this.contador = contador;
+    repaint();
+  }
+
+  /** Paint the histogram */
+  protected void paintComponent(Graphics g) {
+    if (contador == null) return; // No display if contador is null
+
+    super.paintComponent(g);
+
+    // Find the panel size and bar width and interval dynamically
+    int ancho = getWidth();
+    int altura = getHeight();
+    int intervalo = (ancho - 40) / contador.length;
+    int anchoIndividual = (int)(((ancho - 40) / 24) * 0.60);
+
+    // Find the maximum contador. The maximum contador has the highest bar
+    int maxContador = 0;
+    for (int i = 0; i < contador.length; i++) {
+      if (maxContador < contador[i])
+        maxContador = contador[i];
+    }
+
+    // x is the start position for the first bar in the histogram
+    int x = 30;
+
+    // Draw a horizontal base line
+    g.drawLine(10, altura - 45, ancho - 10, altura - 45);
+		final int ASCII_A = 65;
+    for (int i = 0; i < contador.length; i++) {
+      // Find the bar height
+      int alturaBarra =
+        (int)(((double)contador[i] / (double)maxContador) * (altura - 55));
+
+      // Display a bar (i.e. rectangle)
+      g.drawRect(x, altura - 45 - alturaBarra, anchoIndividual, alturaBarra);
+
+      // Display a letter under the base line
+      g.drawString((char)(ASCII_A + i) + "", x, altura - 30);
+
+      // Move x for displaying the next character
+      x += intervalo;
+    }
+  }
+
+  /** Override getPreferredSize */
+  public Dimension getPreferredSize() {
+    return new Dimension(300, 300);
+  }
+}
+
+
+/*
+ * vim:ts=2:set nu:sw=2
+ */

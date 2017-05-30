@@ -1,0 +1,10 @@
+package pi;
+
+import javax.swing.JButton;
+
+public class VistaBotones {
+	private JButton d1 = new JButton("Drop1");
+	private JButton d10 = new JButton("Drop10");
+	private JButton d100 = new JButton("Drop100");
+	private JButton d1000 = new JButton("Drop1000");
+}

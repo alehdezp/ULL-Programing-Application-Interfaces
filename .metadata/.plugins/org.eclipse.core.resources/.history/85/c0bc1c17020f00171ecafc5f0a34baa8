@@ -1,0 +1,90 @@
+package prueba7;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.util.ArrayList;
+
+public class Formas {
+
+	private String outputFile = "salida.txt";
+	private String[] inputFile;
+	private ArrayList<String> readFile;
+	
+	public Formas(String[] inputFile){
+		setInputFile(inputFile);
+	}
+	
+	public void calculaFormas(){
+		
+		
+		
+		for(int i = 0; i < getInputFile().length; i++){
+			setReadFile(new ArrayList<String>());
+			int nLineas = 0; 
+			try{		//bloque try
+
+				FileReader fr = new FileReader(inputFile[i]);
+				BufferedReader br = new BufferedReader(fr);
+				String lineAux= "";
+
+				while((lineAux = br.readLine())!= null){	//leemos hasta el fin del fichero
+					getReadFile().add(lineAux);					//guardamos la lineas en el array
+				}
+				fr.close();
+				br.close();
+			}catch(Exception e){
+				System.out.println(e);
+			}
+			if(getReadFile().get(0).contains("esfera"))
+				esfera();
+		}
+	}
+	
+	public void esfera(){
+		String[] coordenadas.getReadFile().get(1).split(", ");
+	}
+	
+	/**
+	 * @return the outputFile
+	 */
+	public String getOutputFile() {
+		return outputFile;
+	}
+
+	/**
+	 * @param outputFile the outputFile to set
+	 */
+	public void setOutputFile(String outputFile) {
+		this.outputFile = outputFile;
+	}
+
+	/**
+	 * @return the inputFile
+	 */
+	public String[] getInputFile() {
+		return inputFile;
+	}
+
+	/**
+	 * @param inputFile the inputFile to set
+	 */
+	public void setInputFile(String[] inputFile) {
+		this.inputFile = inputFile;
+	}
+
+	/**
+	 * @return the readFile
+	 */
+	public ArrayList<String> getReadFile() {
+		return readFile;
+	}
+
+	/**
+	 * @param readFile the readFile to set
+	 */
+	public void setReadFile(ArrayList<String> readFile) {
+		this.readFile = readFile;
+	}
+
+	
+}

@@ -1,0 +1,87 @@
+package T2GUIDevelopmentJava;
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+
+public class DemoMultiplesVentanas extends JFrame {
+  private JTextArea areaTexto;
+  private JButton botonHistograma = new JButton("Mostrar Histograma");
+  private Histograma histograma = new Histograma();
+
+  // Create a new frame to hold the histogram panel
+  private JFrame ventanaHistograma = new JFrame();
+
+  public DemoMultiplesVentanas() {
+    // Store text area in a scroll pane
+    JScrollPane panelScroll = new JScrollPane(areaTexto = new JTextArea());
+    panelScroll.setPreferredSize(new Dimension(300, 200));
+    areaTexto.setWrapStyleWord(true);
+    areaTexto.setLineWrap(true);
+
+    // Place scroll pane and button in the frame
+    add(panelScroll, BorderLayout.CENTER);
+    add(botonHistograma, BorderLayout.SOUTH);
+
+    // Register listener
+    botonHistograma.addActionListener(new ActionListener() {
+      /** Handle the button action */
+      public void actionPerformed(ActionEvent e) {
+        // Count the letters in the text area
+        int[] contador = cuentaLetras();
+
+        // Set the letter count to histogram for display
+        histograma.muestraHistograma(contador);
+
+        // Show the frame
+        ventanaHistograma.setVisible(true);
+      }
+    });
+
+    // Create a new frame to hold the histogram panel
+    ventanaHistograma.add(histograma);
+    ventanaHistograma.pack();
+    ventanaHistograma.setTitle("Histograma");
+  }
+
+  /** Count the letters in the text area */
+  private int[] cuentaLetras() {
+	  final int NUM_LETRAS = 26;
+		final int ASCII_A = 65;
+		final int ASCII_a = 97;
+
+    // Count for 26 letters
+    int[] contador = new int[NUM_LETRAS];
+
+    // Get contents from the text area
+    String texto = areaTexto.getText();
+
+    // Count occurrence of each letter (case insensitive)
+    for (int i = 0; i < texto.length(); i++) {
+      char letra = texto.charAt(i);
+
+      if ((letra >= 'A') && (letra <= 'Z')) {
+        contador[(int)letra - ASCII_A]++; 
+      }
+      else if ((letra >= 'a') && (letra <= 'z')) {
+        contador[(int)letra - ASCII_a]++; 
+      }
+    }
+
+    return contador;    // Return the array
+  }
+
+  public static void main(String[] args) {
+    DemoMultiplesVentanas ventana = new DemoMultiplesVentanas();
+    ventana.setLocationRelativeTo(null); // Center the frame
+    ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    ventana.setTitle("Demo Varias Ventanas");
+    ventana.pack();
+    ventana.setVisible(true);
+  }
+}
+
+
+/*
+ * vim:ts=2:set nu:sw=2
+ */

@@ -1,0 +1,65 @@
+package pi;
+
+import java.awt.Color;
+import java.awt.Graphics;
+
+import javax.swing.JPanel;
+
+public class VistaDibujo extends JPanel{
+	private int unidad;
+	private Controlador control;
+	
+	VistaDibujo(){
+		
+	}
+
+	
+	public void paintComponent(Graphics g){		
+		super.paintComponent(g);
+		setBackground(Color.white);
+		dibujaLineas(g);
+	}
+	
+	public void dibujaLineas(Graphics g){
+		setUnidad(getHeight()/3);
+
+		g.drawLine(0, unidad, getWidth(), unidad);
+		g.drawLine(0, unidad*2, getWidth(), unidad*2);
+		
+	}
+
+
+	/**
+	 * @return the unidad
+	 */
+	public int getUnidad() {
+		return unidad;
+	}
+
+
+	/**
+	 * @param unidad the unidad to set
+	 */
+	public void setUnidad(int unidad) {
+		this.unidad = unidad;
+	}
+
+
+	/**
+	 * @return the control
+	 */
+	public Controlador getControl() {
+		return control;
+	}
+
+
+	/**
+	 * @param control the control to set
+	 */
+	public void setControl(Controlador control) {
+		this.control = control;
+	}
+	
+	
+	
+}
